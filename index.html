@@ -56,10 +56,17 @@ div.sticky {
   padding: 10px;
   background-color: #ffffff;
 }
-h2 {
-  display: none;
+
+#top {
+  top: 0;
 }
-h3 {
+
+#bottom {
+  bottom: 0;
+}
+
+
+h2 {
   display: none;
 }
 
@@ -69,8 +76,9 @@ hr {
 </style>
 </head>
 <body onLoad="pageScroll()">
-<div class="sticky"><h1 align="center">Märskyn Vertical Run Championship 21.12.2022 - Tulokset</h1></div>
+<div class="sticky" id="top"><h1 align="center">Märskyn Vertical Run Championship 21.12.2022 - Tulokset</h1></div>
 <div w3-include-html="marsky_portaat_2022.html"></div>
+<div class="sticky" id="bottom"><h3 align="center" id="nayta">Lähtöpaikka on Urhean -2 kerros. Kaikki jotka voittavat Simon ajan (xx:xx:xx) saavat karkkia.</h3></div>
 
 <script>
 includeHTML();
