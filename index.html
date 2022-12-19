@@ -1,11 +1,19 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="refresh" content="10">
+
+  <meta http-equiv="refresh" content="20">
+<script type="text/javascript">
+         
+function scrollFrameRight(){
+var innerFrame = document.getElementById("frame").contentWindow;
+
+innerFrame.scroll(999999,1);
+
+}
+onload =scrollFrameRight;                                           
+</script>
 </head>
 <body>
-
-<embed type="text/html" src="nikkilan_sydan_2022_tulokset.html"  width="100%" height="100vh">
-
+<iframe id='frame' src="nikkilan_sydan_2022_tulokset.html" height="1080" width="100%"></iframe>
 </body>
 </html>
