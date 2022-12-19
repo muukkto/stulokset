@@ -1,19 +1,80 @@
 <html>
 <head>
 
-  <meta http-equiv="refresh" content="20">
-<script type="text/javascript">
-         
-function scrollFrameRight(){
-var innerFrame = document.getElementById("frame").contentWindow;
-
-innerFrame.scroll(999999,1);
+ <meta http-equiv="refresh" content="120">
+<script>
+function pageScroll() {
+  window.scrollBy(0, 1); // horizontal and vertical scroll increments
+  scrolldelay = setTimeout('pageScroll()', 50); // scrolls every 100 milliseconds
+  if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+    clearTimeout(scrolldelay);
+    scrolldelay = setTimeout('PageUp()', 2000);
+  }
 
 }
-onload =scrollFrameRight;                                           
+
+function PageUp() {
+  window.scrollTo(0, 0);
+  setTimeout(function() {
+	pageScroll()
+  }, 600);
+}
+
+function includeHTML() {
+  var z, i, elmnt, file, xhttp;
+  /*loop through a collection of all HTML elements:*/
+  z = document.getElementsByTagName("*");
+  for (i = 0; i < z.length; i++) {
+    elmnt = z[i];
+    /*search for elements with a certain atrribute:*/
+    file = elmnt.getAttribute("w3-include-html");
+    if (file) {
+      /*make an HTTP request using the attribute value as the file name:*/
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+          /*remove the attribute, and call this function once more:*/
+          elmnt.removeAttribute("w3-include-html");
+          includeHTML();
+        }
+      }      
+      xhttp.open("GET", file, true);
+      xhttp.send();
+      /*exit the function:*/
+      return;
+    }
+  }
+};
 </script>
+<style>
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding: 10px;
+  background-color: #ffffff;
+}
+h2 {
+  display: none;
+}
+h3 {
+  display: none;
+}
+
+hr {
+  display: none;
+}
+</style>
 </head>
-<body>
-<iframe id='frame' src="nikkilan_sydan_2022_tulokset.html" height="1080" width="100%"></iframe>
+<body onLoad="pageScroll()">
+<div class="sticky"><h1 align="center">Märskyn Vertical Run Championship 21.12.2022 - Tulokset</h1></div>
+<div w3-include-html="nikkilan_sydan_2022_tulokset.html"></div>
+
+<script>
+includeHTML();
+</script>
+
 </body>
 </html>
