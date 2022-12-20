@@ -1,3 +1,3 @@
 git add -A
 git commit -m "Tulosten_paivitys"
-git push origin master   
+git push origin main   
